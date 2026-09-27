@@ -10,6 +10,7 @@ struct Page<Content: View>: View {
                 .padding(DesignTokens.Space.page)
                 .frame(maxWidth: .infinity)
         }
+        .scrollDismissesKeyboard(.interactively)
         .background(DesignTokens.Color.canvas)
         .foregroundStyle(DesignTokens.Color.textPrimary)
     }

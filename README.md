@@ -2,7 +2,7 @@
 
 Native iPhone fitness RPG, iOS 26+. **TRAIN. LEVEL UP. EVOLVE.**
 
-This repository currently contains the specification foundation and **Milestone 1 source awaiting Apple build/test validation**. The implemented scope is profile setup, five-tab SwiftUI shell and a validated four-day program browser. Workout execution, rewards, 3D and system integrations belong to later milestones. This is not a release-ready fitness application.
+This repository currently contains the specification foundation and **Milestone 1 source with passing native build/tests; boundary-device UI acceptance pending**. The implemented scope is profile setup, five-tab SwiftUI shell and a validated four-day program browser. Workout execution, rewards, 3D and system integrations belong to later milestones. This is not a release-ready fitness application.
 
 ## Develop from Windows
 
@@ -38,4 +38,4 @@ The validator checks repository/seed/project structure. It does **not** compile 
 
 No HealthKit/iCloud permissions are requested in the foundation. The local profile uses versioned SwiftData and reports save failures without replacing the store. Preview tabs contain no simulated user history.
 
-Backup/import and diagnostics export are V1 requirements, not yet implemented runtime features. The new Personal Edition settings surface reports versions and current capability exclusions honestly. No native build or real IPA has been produced yet; see `STATUS.md`.
+Backup/import and diagnostics export are V1 requirements, not yet implemented runtime features. The new Personal Edition settings surface reports versions and current capability exclusions honestly. Native Debug/Release builds and 27 tests passed in checkpoint 36323283081; unsigned packaging is the next gate. See `STATUS.md`.

@@ -10,10 +10,10 @@ final class FoundationFlowTests: XCTestCase {
         XCTAssertTrue(name.waitForExistence(timeout: 10))
         capture(app, name: "Setup")
         let continueButton = app.buttons["setup.continue"]
-        for _ in 0..<5 where !continueButton.isHittable { app.swipeUp() }
+        for _ in 0..<5 where !continueButton.isHittable { app.scrollViews.firstMatch.swipeUp() }
         continueButton.tap()
         XCTAssertTrue(app.staticTexts["setup.error"].exists)
-        for _ in 0..<5 where !name.isHittable { app.swipeDown() }
+        for _ in 0..<5 where !name.isHittable { app.scrollViews.firstMatch.swipeDown() }
         name.tap()
         name.typeText("Test Hunter\n")
         XCTAssertTrue(app.tabBars.buttons["System"].waitForExistence(timeout: 5))
@@ -38,12 +38,12 @@ final class FoundationFlowTests: XCTestCase {
         app.launch()
         XCTAssertTrue(app.textFields["setup.name"].waitForExistence(timeout: 10))
         capture(app, name: "Setup accessibility text")
-        for _ in 0..<5 where !app.textFields["setup.name"].isHittable { app.swipeUp() }
+        for _ in 0..<5 where !app.textFields["setup.name"].isHittable { app.scrollViews.firstMatch.swipeUp() }
         app.textFields["setup.name"].tap()
         app.textFields["setup.name"].typeText("Accessible Hunter")
-        app.swipeUp()
+        app.scrollViews.firstMatch.swipeUp()
         let continueButton = app.buttons["setup.continue"]
-        for _ in 0..<5 where !continueButton.isHittable { app.swipeUp() }
+        for _ in 0..<5 where !continueButton.isHittable { app.scrollViews.firstMatch.swipeUp() }
         XCTAssertTrue(continueButton.isHittable)
         capture(app, name: "Accessible primary action")
         continueButton.tap()

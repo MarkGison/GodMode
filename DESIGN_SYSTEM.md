@@ -18,8 +18,10 @@ Page: scrollable, centered maximum readable width, semantic page insets. Card: o
 
 Small iPhone: single-column cards and controls; no decorative fixed-height hero. Large iPhone: cap text width and retain one-handed actions. Accessibility Dynamic Type: multiline titles, vertical metrics, no clipped text or horizontal scrolling for essential controls. All pages scroll, with safe-area awareness. Future metric grids use `ViewThatFits`/adaptive layout rather than device-name checks.
 
+Scrolling interactively dismisses the keyboard, keeping long forms navigable on small screens at maximum text sizes. UI tests gesture on the scroll view, avoiding keyboard swipes that cannot scroll page content.
+
 M1 hierarchy: GodMode title → tagline → profile → program link. Quests list → day details → exercise prescriptions/safety notes. No animation or 3D in this milestone. Later Reduce Motion disables orbit/portal/flash effects; Reduce Transparency uses opaque cards. Audio/haptics independently optional. Tests must cover VoiceOver labels, focus, text growth, and native back navigation.
 
 ## Verification
 
-Inspect CI screenshots from small/large supported iPhone simulators, default and largest accessibility type, then the owner's iPhone when personal signing is available. Compare against this written brief; no supplied visual reference exists. Preserve screenshots/test attachments as CI artifacts for Windows review. No native render has yet been verified.
+Inspect CI screenshots from small/large supported iPhone simulators, default and largest accessibility type, then the owner's iPhone when personal signing is available. Compare against this written brief; no supplied visual reference exists. Preserve screenshots/test attachments as CI artifacts for Windows review. The first iPhone 17 Pro renders were inspected; the two contrast findings above are corrected in source and await boundary-device render acceptance.
