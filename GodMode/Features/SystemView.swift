@@ -35,5 +35,14 @@ struct SystemView: View {
             }
         }
         .navigationTitle("System")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink {
+                    PersonalEditionSettingsView(capabilities: model.capabilities)
+                } label: {
+                    Label("Settings", systemImage: "gearshape")
+                }
+            }
+        }
     }
 }

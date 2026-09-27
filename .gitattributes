@@ -7,3 +7,6 @@
 *.pbxproj text eol=lf
 *.xcscheme text eol=lf
 *.md text eol=lf
+# Preserve intentional Markdown hard line breaks in the supplied source briefs.
+MASTER_BRIEF.md whitespace=-blank-at-eol
+PERSONAL_EDITION_OVERRIDE.md whitespace=-blank-at-eol

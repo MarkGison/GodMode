@@ -1,0 +1,24 @@
+name: GodMode portable checks
+on:
+  push:
+    paths: ['GodMode/**', 'GodModeTests/**', 'GodModeUITests/**', 'GodMode.xcodeproj/**', 'Packages/**', 'Config/**', 'tools/**', '.github/workflows/**']
+  pull_request:
+    paths: ['GodMode/**', 'GodModeTests/**', 'GodModeUITests/**', 'GodMode.xcodeproj/**', 'Packages/**', 'Config/**', 'tools/**', '.github/workflows/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: godmode-portable-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  structure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/validate_repository.py
+      - run: python3 -m unittest discover -s tools/tests -v
+      - name: Check generated project drift
+        run: |
+          python3 tools/generate_project.py
+          git diff --exit-code -- GodMode.xcodeproj

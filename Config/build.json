@@ -1,0 +1,8 @@
+{
+  "bundleIdentifier": "com.markgison.godmode",
+  "version": "0.1.0",
+  "buildNumber": "1",
+  "deploymentTarget": "26.0",
+  "xcodeVersion": "26.2",
+  "simulatorRuntime": "com.apple.CoreSimulator.SimRuntime.iOS-26-2"
+}

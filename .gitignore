@@ -11,3 +11,10 @@ __pycache__/
 *.mobileprovision
 *.p12
 *.ipa
+*.xcarchive/
+*.godmode
+*.p8
+*.pfx
+*.keychain-db
+.env
+.env.*

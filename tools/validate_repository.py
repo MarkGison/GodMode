@@ -24,7 +24,7 @@ def unique(values, label):
 
 
 def validate():
-    docs = "AGENTS PRODUCT_SPEC ARCHITECTURE DESIGN_SYSTEM GAME_DESIGN DATA_MODEL WORKOUT_ENGINE PROGRESSION_ENGINE QUEST_ENGINE REWARD_ENGINE CHARACTER_SYSTEM INVENTORY_SYSTEM 3D_ENGINE PERFORMANCE_BUDGET ACCESSIBILITY SECURITY_PRIVACY TEST_PLAN RELEASE_CHECKLIST STATUS MASTER_BRIEF README".split()
+    docs = "AGENTS PRODUCT_SPEC ARCHITECTURE DESIGN_SYSTEM GAME_DESIGN DATA_MODEL WORKOUT_ENGINE PROGRESSION_ENGINE QUEST_ENGINE REWARD_ENGINE CHARACTER_SYSTEM INVENTORY_SYSTEM 3D_ENGINE PERFORMANCE_BUDGET ACCESSIBILITY SECURITY_PRIVACY TEST_PLAN RELEASE_CHECKLIST STATUS MASTER_BRIEF README PERSONAL_EDITION_OVERRIDE PERSONAL_INSTALLATION WINDOWS_DEVELOPMENT CI BACKUP_SYSTEM SYSTEM_CAPABILITIES DIAGNOSTICS".split()
     for name in docs:
         path = ROOT / f"{name}.md"
         check(path.exists() and path.stat().st_size > 100, f"Missing or empty {name}.md")
@@ -86,6 +86,11 @@ def validate():
     check(catalog["sourceLanguage"] == "en", "Unexpected source language")
 
     project = (ROOT / "GodMode.xcodeproj/project.pbxproj").read_text(encoding="utf-8")
+    build = json.loads((ROOT / "Config/build.json").read_text(encoding="utf-8"))
+    check(build["bundleIdentifier"] == "com.markgison.godmode", "Stable personal bundle ID changed: intentional migration review required")
+    check(f'PRODUCT_BUNDLE_IDENTIFIER = "{build["bundleIdentifier"]}";' in project, "Bundle identity differs from authoritative config")
+    check(f'MARKETING_VERSION = "{build["version"]}";' in project, "App version differs from config")
+    check(f'CURRENT_PROJECT_VERSION = "{build["buildNumber"]}";' in project, "Build number differs from config")
     definitions = re.findall(r"^\s*([A-F0-9]{24}) = \{isa = (\w+);", project, re.M)
     identifiers = {key for key, _ in definitions}
     check(len(identifiers) == len(definitions), "Duplicate Xcode object identifiers")
@@ -105,6 +110,11 @@ def validate():
     for reference in scheme.findall(".//BuildableReference"):
         check(reference.attrib["BlueprintIdentifier"] in identifiers, "Scheme target reference is invalid")
     check((ROOT / ".github/workflows/ios.yml").exists(), "CI workflow missing")
+    workflow = (ROOT / ".github/workflows/ios.yml").read_text(encoding="utf-8")
+    check("workflow_dispatch:" in workflow and not re.search(r"^  (push|pull_request):", workflow, re.M), "macOS workflow must run only at manual checkpoints")
+    check((ROOT / ".github/workflows/static.yml").exists(), "Portable workflow missing")
+    for name in ["ci.py", "package_ipa.py", "signing.py"]:
+        check((ROOT / "tools" / name).exists(), f"Missing CI tool: {name}")
 
     production = list((ROOT / "GodMode").rglob("*.swift")) + list((ROOT / "Packages/GodModeCore/Sources").rglob("*.swift"))
     for source in production:

@@ -22,6 +22,7 @@ def quoted(value):
 
 def generate():
     objects = {}
+    build = json.loads((ROOT / "Config/build.json").read_text(encoding="utf-8"))
 
     def obj(name, isa, body):
         key = identity(name)
@@ -82,10 +83,10 @@ def generate():
         product_ids.append(product)
         common = {
             "PRODUCT_NAME": "$(TARGET_NAME)",
-            "PRODUCT_BUNDLE_IDENTIFIER": "com.example.godmode" + ("" if name == "GodMode" else "." + name),
+            "PRODUCT_BUNDLE_IDENTIFIER": build["bundleIdentifier"] + ("" if name == "GodMode" else "." + name),
             "CODE_SIGN_STYLE": "Automatic",
-            "MARKETING_VERSION": "0.1.0",
-            "CURRENT_PROJECT_VERSION": "1",
+            "MARKETING_VERSION": build["version"],
+            "CURRENT_PROJECT_VERSION": build["buildNumber"],
             "LD_RUNPATH_SEARCH_PATHS": "$(inherited) @executable_path/Frameworks @loader_path/Frameworks",
             "SWIFT_EMIT_LOC_STRINGS": "YES" if name == "GodMode" else "NO",
         }
@@ -110,7 +111,7 @@ def generate():
     products = obj("products", "PBXGroup", f"children = {refs(product_ids)}; name = Products; sourceTree = \"<group>\";")
     main = obj("main", "PBXGroup", f"children = {refs(group_ids + [products])}; sourceTree = \"<group>\";")
     project_configs = configs("project", {
-        "SDKROOT": "iphoneos", "IPHONEOS_DEPLOYMENT_TARGET": "26.0",
+        "SDKROOT": "iphoneos", "IPHONEOS_DEPLOYMENT_TARGET": build["deploymentTarget"],
         "SUPPORTED_PLATFORMS": "iphoneos iphonesimulator", "TARGETED_DEVICE_FAMILY": "1",
         "SWIFT_VERSION": "6.0", "SWIFT_STRICT_CONCURRENCY": "complete",
         "SWIFT_TREAT_WARNINGS_AS_ERRORS": "YES", "GCC_TREAT_WARNINGS_AS_ERRORS": "YES",

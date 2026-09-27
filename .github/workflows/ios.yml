@@ -1,35 +1,55 @@
-name: Native iOS quality gate
+name: GodMode checkpoint
 on:
-  push:
-  pull_request:
   workflow_dispatch:
+    inputs:
+      suite:
+        description: Validation scope (full is the milestone gate)
+        type: choice
+        options: [full, unit, compile]
+        default: full
+      package:
+        description: Packaging (requires full suite; unsigned needs personal re-signing)
+        type: choice
+        options: [none, unsigned, signed]
+        default: none
 permissions:
   contents: read
+concurrency:
+  group: godmode-checkpoint-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
-  foundation:
-    runs-on: macos-15
-    timeout-minutes: 35
+  preflight:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Select an installed Xcode 26 or later
-        shell: bash
+      - name: Portable checks before using macOS minutes
+        env:
+          SUITE: ${{ inputs.suite }}
+          PACKAGE: ${{ inputs.package }}
         run: |
-          for app in /Applications/Xcode*.app; do
-            developer="$app/Contents/Developer"
-            major=$(DEVELOPER_DIR="$developer" xcodebuild -version | awk '/Xcode/ {split($2, v, "."); print v[1]}')
-            if [[ "$major" -ge 26 ]]; then
-              echo "DEVELOPER_DIR=$developer" >> "$GITHUB_ENV"
-              exit 0
-            fi
-          done
-          echo "No Xcode 26+ installed on this runner. Update the runner image." >&2
-          exit 1
-      - name: Build and test
-        run: bash tools/check-macos.sh
-      - name: Preserve Apple test results
+          python3 tools/validate_repository.py
+          python3 -m unittest discover -s tools/tests -v
+          python3 -c 'import os; assert os.environ["PACKAGE"] == "none" or os.environ["SUITE"] == "full", "Packaging requires the full suite"'
+  native:
+    needs: preflight
+    runs-on: macos-15
+    timeout-minutes: 45
+    environment: ${{ inputs.package == 'signed' && 'personal-signing' || 'validation' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile, test and optionally package
+        env:
+          SUITE: ${{ inputs.suite }}
+          PACKAGE: ${{ inputs.package }}
+          GODMODE_CERTIFICATE_P12_BASE64: ${{ inputs.package == 'signed' && secrets.GODMODE_CERTIFICATE_P12_BASE64 || '' }}
+          GODMODE_CERTIFICATE_PASSWORD: ${{ inputs.package == 'signed' && secrets.GODMODE_CERTIFICATE_PASSWORD || '' }}
+          GODMODE_PROFILE_BASE64: ${{ inputs.package == 'signed' && secrets.GODMODE_PROFILE_BASE64 || '' }}
+        run: python3 tools/ci.py --suite "$SUITE" --package "$PACKAGE"
+      - name: Downloadable results and logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ios-test-results
-          path: artifacts/*.xcresult
-          if-no-files-found: ignore
+          name: GodMode-${{ github.run_number }}-${{ github.sha }}
+          path: artifacts/
+          retention-days: 7
+          if-no-files-found: warn

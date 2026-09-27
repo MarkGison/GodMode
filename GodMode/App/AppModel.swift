@@ -13,10 +13,13 @@ final class AppModel {
     private(set) var isSaving = false
     @ObservationIgnored private let programs: any ProgramRepository
     @ObservationIgnored private let profiles: any ProfileRepository
+    @ObservationIgnored let capabilities: any SystemCapabilities
 
-    init(programs: any ProgramRepository, profiles: any ProfileRepository) {
+    init(programs: any ProgramRepository, profiles: any ProfileRepository,
+         capabilities: any SystemCapabilities = PersonalEditionCapabilities()) {
         self.programs = programs
         self.profiles = profiles
+        self.capabilities = capabilities
     }
 
     func load() async {
