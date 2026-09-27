@@ -31,3 +31,9 @@ SetRecord fields: ID, command ID, session/exercise/prescription IDs, ordinal, ty
 M1 supplies VersionedSchema + SchemaMigrationPlan with only V1, so no migration stage exists yet. A baseline disk-store reopening test is required; it is not a historical migration test. Before V2, freeze V1 types, retain a populated V1 fixture, add a real migration stage and assertions for every user field and relationship. No destructive reset on failure. Back up/export before any irreversible migration. Store URLs and encryption/protection behavior need device verification before release.
 
 CloudKit-compatible future schema avoids relying on local unique constraints for distributed correctness; defaults/optional relationships and inverse relationships reviewed per Apple requirements. Synchronization remains off until conflict and migration tests pass. Histories page by time/ID (e.g. 50 rows); analytics aggregate incrementally. Raw HealthKit samples are minimized and never copied to public cloud records.
+
+## Personal Edition durability
+
+CloudKit is outside V1. All listed mutable aggregates, preferences and active-session state persist locally in SwiftData. Backup envelope version and database schema version are independent. `BACKUP_SYSTEM.md` defines export coverage, validation, integrity and atomic restoration. Every new persisted aggregate must be added to backup round-trip tests before its feature is complete. Preserve reward ledger/tombstones and session command IDs across imports; import must never replay completion or external export events.
+
+Stable bundle identity is centralized in `Config/build.json`; data IDs and store keys must not use signing certificate identity. Normal same-container app updates use SwiftData migrations. Uninstall, changed identity, or installer container replacement can remove data; only an external backup makes recovery possible. Compatible active-session updates resume from absolute timestamps.

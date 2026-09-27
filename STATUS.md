@@ -2,17 +2,17 @@
 
 Updated 2026-09-27. Authoring host: Windows; Swift and Xcode unavailable.
 
-- Milestone 0: complete. Specification foundation authored, reviewed and committed as `e10f441`. Master brief preserved verbatim in `MASTER_BRIEF.md`.
-- Milestone 1: foundation source authored and reviewed; Apple build/test/render acceptance is pending. Do not mark complete or advance to M2 until the gate runs successfully on a Mac.
-- Milestones 2–19: planned, not implemented. No working workout tracker, 3D character, cloud/HealthKit integration or release build is claimed.
+- Milestone 0: complete; original foundation commit `e10f441`, now revised by `PERSONAL_EDITION_OVERRIDE.md`. Master brief preserved as historical input.
+- Milestone 1: foundation source authored and reviewed; Apple build/test/render acceptance is pending. Do not mark complete or advance to M2 until the full macOS CI gate succeeds and available visual artifacts are reviewed.
+- Milestones 2–19 (including new M3A backup gate): planned, not implemented. No working workout tracker, 3D character, cloud/HealthKit integration or installable IPA is claimed.
 
 ## Decisions recorded
 
-Local owner, no server/account, local repository pattern, bundled validated catalog, versioned SwiftData profile foundation, Swift 6, iOS 26, original assets only. Strict progression ladder supersedes permissive example. Undefined Day 2–4 prescriptions are reviewable seed assumptions. M1 exposes actual catalog and profile behavior only.
+Local owner, no server/account, local repository pattern, bundled validated catalog, versioned SwiftData profile foundation, Swift 6, iOS 26, original assets only. Strict progression ladder supersedes permissive example. Undefined Day 2–4 prescriptions are reviewable seed assumptions. Personal Edition: Windows + hosted macOS CI + legitimate personal sideloading; no physical/rented Mac, paid membership, App Store or TestFlight requirement. CloudKit is outside V1; backup/import, diagnostics and capability fallbacks are required. Stable pre-install identity is com.markgison.godmode in Config/build.json.
 
 ## Next gate
 
-On a Mac with Xcode 26 and an installed iOS 26 simulator, run `tools/check-macos.sh`. Fix compilation/test failures and inspect small/large iPhone + accessibility type. Record xcresult and audit evidence, then complete M1 and start M2. See `TEST_PLAN.md` and `RELEASE_CHECKLIST.md`.
+Upload the revised repository when network approval is available, then manually dispatch GitHub Actions **GodMode checkpoint** with full/none. CI pins Xcode 26.2 + iOS 26.2 simulator. Inspect logs, tests and screenshot artifacts from Windows, fix failures, record actual evidence and finish M1 before M2. Signing remains independent; unavailable personal signing does not block source development. Physical-device performance/VoiceOver/update checks remain required for V1 readiness.
 
 ## Implemented foundation source
 
@@ -21,12 +21,22 @@ On a Mac with Xcode 26 and an installed iOS 26 simulator, run `tools/check-macos
 - Five-tab SwiftUI shell, centralized semantic tokens, native scrolling/navigation/controls, accessibility identifiers and initial English string catalog.
 - Read-only four-day catalog backed by a local Swift package; exact Push targets, editable remaining prescriptions, safety notes, group/side/tempo/target validation, no fabricated history.
 - Foundation-only domain tests; Apple persistence/reopen, presentation failure/retry and UI smoke/launch-performance test sources.
-- Reproducible project generator, portable validator, Mac build script and GitHub Actions workflow. No remote repository or CI run has been created.
+- Reproducible project generator, portable validator, cheap Ubuntu checks and manually dispatched macOS CI with independent status reports and optional archive/IPA packaging. Remote origin is https://github.com/MarkGison/GodMode.git; user created it and authenticated Git. Remote branch check found it empty. No push or CI run has completed.
+- Personal Edition capability policy/protocol, conservative module-exclusion provider injected into the app, version/capability Settings, additional Swift policy tests and UI screenshot attachments. Runtime integrations remain excluded rather than guessed available.
+- Backup/import and diagnostics contracts, updated V1 acceptance and owner instructions. Runtime backup/import/export are explicitly not implemented yet.
 
 ## Validation performed on Windows
 
-`python tools/validate_repository.py`: **347/347 structural checks passed**. `python -m py_compile tools/generate_project.py tools/validate_repository.py`: passed. Git whitespace check: passed. Xcode project regenerated and checked for stable output. These checks validate content/references, not native runtime behavior.
+Personal Edition: **371/371 structural checks passed**, **14 Python regression tests passed**, and all build tooling passed Python syntax compilation. Tests cover stage reporting, package structure and provisioning validation. Generated project remains reproducible and Git whitespace checks pass. These checks do not prove native behavior. Workflow syntax was reviewed but a YAML parser is not installed on this host; GitHub workflow execution is pending.
 
-Swift and xcodebuild are absent from the host PATH. Swift tests, iOS builds, simulator tests, migration execution, rendered layout/contrast, VoiceOver, signing, 3D performance and TestFlight are **not run**. The M1 test sources must not be reported as passing tests. Baseline schema reopening coverage is authored; no historical migration exists yet.
+Swift and xcodebuild are absent from the host PATH. Swift tests, iOS builds, simulator tests, migration execution, rendered layout/contrast, VoiceOver, signing and 3D performance are **not run**. The M1 test sources must not be reported as passing tests. Baseline schema reopening coverage is authored; no historical migration exists yet. TestFlight is outside scope.
 
 Git author is configured for this repository only using the identity supplied by the user. See `AUDIT.md` for the second-pass findings and remaining risks.
+
+## Independent current build state
+
+| Compilation | Native tests | Archive | Signing | IPA |
+| --- | --- | --- | --- | --- |
+| NOT RUN | NOT RUN | NOT CONFIGURED / not run | NOT CONFIGURED | NOT GENERATED |
+
+Mac CI and standard export paths are authored, not executed. No signing credentials supplied. Automatic approval review could not execute the authenticated repository visibility check because the account hit a usage limit; this was a review-service failure, not a safety rejection. Upload/CI must wait for that review block to be resolved or explicit user guidance. Do not bypass it through another upload channel.

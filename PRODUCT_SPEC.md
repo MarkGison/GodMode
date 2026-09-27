@@ -4,7 +4,7 @@ GodMode — **TRAIN. LEVEL UP. EVOLVE.** A native iPhone workout tracker whose o
 
 ## Authoritative scope
 
-The complete requested experience and screen inventory are retained in `MASTER_BRIEF.md` §§9–10, 22–68, 75. This document resolves behavior; `STATUS.md` distinguishes implemented from planned. No subscriptions, social backend, multiplayer, Watch app, or AI coach in V1.
+The complete requested experience and screen inventory are retained in `MASTER_BRIEF.md` §§9–10, 22–68, 75. `PERSONAL_EDITION_OVERRIDE.md` supersedes its deployment requirements. Current product is **GodMode Personal Edition**, private personal sideloading on the owner's iPhone, authored from Windows. No local/rented Mac, paid membership, App Store or TestFlight is required. No subscriptions, social backend, multiplayer, Watch app, or AI coach in V1. CloudKit moves to future optional scope. HealthKit and system surfaces remain modular and unavailable-capability states are valid.
 
 ## User flow and hierarchy
 
@@ -26,8 +26,14 @@ M1 provides the native shell, durable basic profile setup, real read-only progra
 
 ## Assumptions and resolutions
 
-One local owner, initially thousands of sessions over years, modest catalog, no concurrent server writers. Main access patterns: frequent active-session writes, bounded history reads, immutable catalog reads and reward eligibility transactions. Calendar dates use a stored training time zone; timestamps use absolute instants. Cloud is private optional sync with explicit conflict policy.
+One local owner, initially thousands of sessions over years, modest catalog, no concurrent server writers. Main access patterns: frequent active-session writes, bounded history reads, immutable catalog reads and reward eligibility transactions. Calendar dates use a stored training time zone; timestamps use absolute instants. Future cloud sync needs explicit conflict policy; it is absent in Personal Edition V1.
 
 The brief's progression example permits slower tempo before all sets reach the upper bound; the stricter ladder wins: no automatic tempo escalation for 12/12/11/10. Safe substitutions use bench-supported movements rather than unverified improvised anchors. Unspecified Day 2–4 targets are editable developer assumptions requiring program review before release; 10 kg availability is not a requirement to use that load for every movement. Default draft load is unconfirmed.
 
 Acceptance is sequential, per `RELEASE_CHECKLIST.md`. A source scaffold is not a released product or a passed milestone.
+
+## Personal Edition additions
+
+Settings → Data Management: Export GodMode Backup, Import GodMode Backup, Backup Information, Reset Local Data. Settings → GodMode Personal Edition: app/build/schema versions, graphics mode, capabilities, developer information and Export Diagnostics. Reset/import require clear confirmation and a durable safety snapshot; no silent partial replacement. Backup/export/import is core functionality independent of entitlements. Full contracts: `BACKUP_SYSTEM.md`, `SYSTEM_CAPABILITIES.md`, `DIAGNOSTICS.md`.
+
+The desired final artifact is a legitimately signed `GodMode.ipa`. A CI validation build or unsigned re-signing package is not an installable signed build. Signing not configured never prevents source development/testing. Re-sign/update attempts preserve data only where iOS retains the container; export outside the app before updates. Deleting the app may delete its local data.

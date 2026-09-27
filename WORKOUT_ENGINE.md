@@ -19,3 +19,5 @@ Tempo phases lower/hold/lift derive from an absolute phase start; no background 
 ## Validation/acceptance
 
 Reject negative/nonfinite load, impossible ordinals, duplicate commands, unknown IDs, invalid RIR/RPE, reps for timed-only entries and duration for rep-only records. Missing optional RIR is valid. Draft autosave plus immediate persistence on primary actions; save failures keep input and prevent false completion. Tests cover all transitions, group order, each side, repeats, skip/undo/substitute, termination, draft restoration, clock shifts and storage failures. No workout UI may claim durability before M3 restoration tests pass.
+
+Personal Edition adds compatible app-update restoration and backup coverage of active workout/draft/cursor/rest state. Import serializes against logging and requires ending or explicitly preserving an active session before replacement. Neither personal-signing expiry nor missing optional entitlements changes the workout state machine. Timer deadlines remain absolute after update or import; stale notifications/Live Activities are rebuilt only after committed recovery.

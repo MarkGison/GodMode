@@ -14,7 +14,7 @@ GodMode/Resources/             privacy manifest, localization, assets
 Packages/GodModeCore/          Foundation-only domain and bundled catalog
 GodModeTests/                  Apple persistence and presentation tests
 GodModeUITests/                accessibility-aware critical flow tests
-tools/                        portable structural validator, Mac build gate
+tools/                        portable checks, checkpoint CI and personal packaging
 .github/workflows/             Apple build/test CI
 ```
 
@@ -24,7 +24,7 @@ tools/                        portable structural validator, Mac build gate
 | --- | --- | --- |
 | Local repository + normalized SwiftData | Owner edits profile/session/set records; transactions and bounded indexed history queries | Chosen. No service operation cost; explicit migrations and later sync reconciliation needed |
 | Local repository + opaque Codable session blobs in SwiftData | Owner replaces an entire session snapshot | Simpler for a disposable single-session demo; poor set analytics, large rewrites and harder conflict merging |
-| Local repository + private CloudKit mirroring | Same local writes plus asynchronous replication to owner's iCloud | Planned opt-in; entitlement/schema/conflict testing required; unsuitable as M1 dependency |
+| Local repository + private CloudKit mirroring | Same local writes plus asynchronous replication to owner's iCloud | Future optional module outside Personal Edition V1; entitlement/schema/conflict testing required |
 
 **Why this approach:** local repositories keep training responsive and testable without network or Apple rendering frameworks. `profileRepository.save(profile)` returns only after save; catalog reads decode/validate a bundled immutable resource. Local owner isolation uses the device sandbox. There are no REST routes, server auth, or account credentials to operate.
 
@@ -38,7 +38,26 @@ M2/M3: serialize active-session commands; idempotent command identifiers; persis
 
 ## Planned modules
 
-Workout/Schedule/Progression/Analytics are fitness domain services. RPGProgression/Quest/Reward/Achievement/Character/Inventory consume fitness facts. AssetManager and PerformanceManager own scene resources/adaptation. HealthKit, CloudKit, LiveActivity, Notification, Haptic and AppIntent adapters are optional. App extensions receive minimal read models through a protected App Group only when implemented.
+Workout/Schedule/Progression/Analytics are fitness domain services. RPGProgression/Quest/Reward/Achievement/Character/Inventory consume fitness facts. AssetManager and PerformanceManager own scene resources/adaptation. SystemCapabilities separates build inclusion, OS/device support, entitlement configuration and user authorization. HealthKit, LiveActivity, Notification, Haptic and AppIntent adapters are optional. CloudSyncService is a future boundary with no V1 implementation. App extensions receive minimal read models through a protected App Group only when both implemented and available.
+
+## Personal Edition build and data paths
+
+```mermaid
+flowchart LR
+  W[Windows + Codex] --> G[Private Git repository]
+  G --> L[Cheap portable checks]
+  G -->|Manual checkpoint| C[Automated macOS CI]
+  C --> T[Compile + unit + UI results]
+  C --> A[Unsigned device archive]
+  A --> U[Unsigned IPA for legitimate re-signing]
+  A -->|Valid signing configuration| I[Signed GodMode.ipa]
+  U --> S[Compatible personal signing installer]
+  I --> S
+  S --> P[Owner iPhone]
+  P --> B[Versioned .godmode backup outside app]
+```
+
+BackupService exports a consistent domain snapshot through LocalRepository, validates/migrates imports before writes, creates a safety snapshot and replaces records transactionally. Portable IDs, not certificate identities, join records. DiagnosticsService maintains a bounded redacted event buffer and exports an explicit user-approved report. See `BACKUP_SYSTEM.md` for persistence alternatives and `CI.md` for independent build/signing states. No Apple account credentials belong in the app.
 
 ## Security/scaling foot-guns
 

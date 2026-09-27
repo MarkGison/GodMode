@@ -1,0 +1,9 @@
+# Personal Edition diagnostics — V1 requirement
+
+Explicit **Export Diagnostics** in Personal Edition Settings. Collect app/build/schema version, device model family (not unique hardware identifier), iOS version, selected/effective graphics profile, capability states, recent structured error categories and sanitized active-session metadata (active/paused, record count, rest present). Never include raw reps/load/body metrics, notes, names, file paths, Apple credentials, certificate/profile contents or database rows by default. Export richer personal data only through the separate explicit backup flow.
+
+DiagnosticsService owns a bounded ring buffer (initial 200 events, final exported file maximum 1 MiB). Event: time, category, stable code, severity and allowlisted nonpersonal context. Categories: persistence, migration, workout restoration, progression/rewards, backup, asset loading, graphics/thermal, HealthKit, notifications, Live Activities. Avoid raw `Error.localizedDescription` from external APIs where it may contain paths or identifiers. Present simple error messages; debug builds can show safe error codes.
+
+Export includes schemaVersion and a clear list of included fields, uses native file sharing and runs only on explicit action. No automatic uploads or external analytics. Diagnostics failure cannot interfere with a workout save. Support uses exported files and CI logs from Windows. M17 adds measured frame-time/thermal/memory summaries; none are fabricated from device name or configured graphics settings.
+
+Tests: known secrets/health values are absent; event count/size caps; write failure and cancellation; missing optional adapters; format compatibility; active metadata contains no sensitive payload. Production Settings may expose safe version/capability data; developer simulations and resets remain DEBUG-only, while user-confirmed Data Management reset is a separate supported action.

@@ -22,6 +22,16 @@ Scope: M0 specifications and M1 source. Method: source review, project-reference
 4. Day 2–4 seed prescriptions need program review before release. Catalog notes are not a full exercise coaching library yet.
 5. CloudKit distributed reward reconciliation, HealthKit permissions/export and all external system surfaces remain planned. Local transactions alone will not ensure cross-device reward uniqueness.
 6. UI is foundation styling; small/large layouts, contrast and VoiceOver need rendered inspection. English catalog extraction should be reviewed after the first Xcode build.
-7. Bundle identifier is a placeholder; app icon, signing, production capabilities, privacy re-audit and TestFlight are later release gates.
+7. Superseded by Personal Edition override: bundle identity is now frozen in Config/build.json. App icon, personal signing, capability checks and privacy re-audit remain pending; TestFlight and App Store are outside current scope.
 
-No milestone beyond M0 is certified complete. Source work is saved in a separate foundation commit so a Mac session can reproduce and finish the next gate.
+No milestone beyond M0 is certified complete. Source work is saved so automated macOS CI can reproduce and finish the next gate from the Windows workflow.
+
+## Personal Edition override audit
+
+Reviewed all project specifications against the preserved override. Updated deployment assumptions, stable identity, build/signing separation, future CloudKit scope, optional capability behavior, backup/import and diagnostics gates. Kept workout/program, progression/RPG, accessibility and original RealityKit scope. Foundation UI now exposes a capability status/settings surface; no unimplemented backup/export actions are presented as working.
+
+Changed macOS CI from automatic push builds to manual checkpoints with cheap Ubuntu preflight. Pinned Xcode/runtime rather than silently choosing a runner default. Added actual device-archive/unsigned-package path and optional standard signed export. Python tests validate reporting/packaging/provisioning input boundaries; they do not prove Apple compilation, code signing or device install. Valid signing configuration has not been supplied.
+
+Security review: unsigned packages cannot be labeled installable; simulator payloads are rejected; signed export requires matching unexpired device profile and valid identity; no security bypasses. Export keys/profiles are temporary, protected-environment secrets; no raw signing command output or secrets in artifacts. Signed IPA necessarily contains its embedded public provisioning profile. Backup hashes detect corruption, not authenticity. Profiles/data never derive identity from certificate lifetime.
+
+Remaining: execute full native CI, inspect exported screenshots, implement and test complete backup/diagnostics at their gates, verify personal installer compatibility and compatible updates on the owner's iPhone. Network upload was interrupted by automatic approval review's usage-limit failure; no workaround upload was attempted.
