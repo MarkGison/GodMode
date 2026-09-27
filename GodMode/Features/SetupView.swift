@@ -11,7 +11,8 @@ struct SetupView: View {
                 Text("Real training. A new journey.").foregroundStyle(DesignTokens.Color.textSecondary)
                 Panel {
                     Text("What should we call you?").font(DesignTokens.TypeStyle.section)
-                    TextField("Hunter name", text: $name)
+                    TextField("Hunter name", text: $name,
+                              prompt: Text("Hunter name").foregroundStyle(DesignTokens.Color.textSecondary))
                         .textContentType(.nickname)
                         .textFieldStyle(.roundedBorder)
                         .submitLabel(.done)
@@ -27,6 +28,7 @@ struct SetupView: View {
                     }
                     Button("Continue") { model.saveProfile(name: name) }
                         .buttonStyle(.borderedProminent)
+                        .foregroundStyle(DesignTokens.Color.onEnergy)
                         .controlSize(.large)
                         .frame(minHeight: DesignTokens.Size.minimumTarget)
                         .disabled(model.isSaving)

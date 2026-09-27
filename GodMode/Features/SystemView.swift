@@ -23,6 +23,7 @@ struct SystemView: View {
                         .foregroundStyle(DesignTokens.Color.textSecondary)
                     NavigationLink("Explore program") { ProgramView(program: program) }
                         .buttonStyle(.borderedProminent)
+                        .foregroundStyle(DesignTokens.Color.onEnergy)
                         .controlSize(.large)
                         .frame(minHeight: DesignTokens.Size.minimumTarget)
                         .accessibilityIdentifier("system.program")

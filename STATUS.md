@@ -1,6 +1,6 @@
 # Delivery status
 
-Updated 2026-09-27. Authoring host: Windows; Swift and Xcode unavailable.
+Updated 2026-09-28. Authoring host: Windows; Swift and Xcode unavailable.
 
 - Milestone 0: complete; original foundation commit `e10f441`, now revised by `PERSONAL_EDITION_OVERRIDE.md`. Master brief preserved as historical input.
 - Milestone 1: foundation source authored and reviewed; Apple build/test/render acceptance is pending. Do not mark complete or advance to M2 until the full macOS CI gate succeeds and available visual artifacts are reviewed.
@@ -12,7 +12,7 @@ Local owner, no server/account, local repository pattern, bundled validated cata
 
 ## Next gate
 
-Upload the revised repository when network approval is available, then manually dispatch GitHub Actions **GodMode checkpoint** with full/none. CI pins Xcode 26.2 + iOS 26.2 simulator. Inspect logs, tests and screenshot artifacts from Windows, fix failures, record actual evidence and finish M1 before M2. Signing remains independent; unavailable personal signing does not block source development. Physical-device performance/VoiceOver/update checks remain required for V1 readiness.
+The repository has been pushed. Full/none checkpoint [36323283081](https://github.com/MarkGison/GodMode/actions/runs/36323283081) passed for source commit e5eeeca. The next checkpoint will verify contrast fixes, boundary-device UI flows and unsigned packaging. CI pins Xcode 26.2 + iOS 26.2 simulator. Inspect logs, tests and screenshot artifacts from Windows, fix failures, record actual evidence and finish M1 before M2. Signing remains independent; unavailable personal signing does not block source development. Physical-device performance/VoiceOver/update checks remain required for V1 readiness.
 
 ## Implemented foundation source
 
@@ -21,15 +21,15 @@ Upload the revised repository when network approval is available, then manually 
 - Five-tab SwiftUI shell, centralized semantic tokens, native scrolling/navigation/controls, accessibility identifiers and initial English string catalog.
 - Read-only four-day catalog backed by a local Swift package; exact Push targets, editable remaining prescriptions, safety notes, group/side/tempo/target validation, no fabricated history.
 - Foundation-only domain tests; Apple persistence/reopen, presentation failure/retry and UI smoke/launch-performance test sources.
-- Reproducible project generator, portable validator, cheap Ubuntu checks and manually dispatched macOS CI with independent status reports and optional archive/IPA packaging. Remote origin is https://github.com/MarkGison/GodMode.git; user created it and authenticated Git. Remote branch check found it empty. No push or CI run has completed.
+- Reproducible project generator, portable validator, cheap Ubuntu checks and manually dispatched macOS CI with independent status reports and optional archive/IPA packaging. Remote origin is https://github.com/MarkGison/GodMode.git; confirmed private and writable. Source pushed; [portable run 36323255337](https://github.com/MarkGison/GodMode/actions/runs/36323255337) and full native checkpoint passed.
 - Personal Edition capability policy/protocol, conservative module-exclusion provider injected into the app, version/capability Settings, additional Swift policy tests and UI screenshot attachments. Runtime integrations remain excluded rather than guessed available.
 - Backup/import and diagnostics contracts, updated V1 acceptance and owner instructions. Runtime backup/import/export are explicitly not implemented yet.
 
 ## Validation performed on Windows
 
-Personal Edition: **371/371 structural checks passed**, **14 Python regression tests passed**, and all build tooling passed Python syntax compilation. Tests cover stage reporting, package structure and provisioning validation. Generated project remains reproducible and Git whitespace checks pass. These checks do not prove native behavior. Workflow syntax was reviewed but a YAML parser is not installed on this host; GitHub workflow execution is pending.
+Personal Edition: **371/371 structural checks passed**, **14 Python regression tests passed**, and all build tooling passed Python syntax compilation. Tests cover stage reporting, package structure and provisioning validation. Generated project remains reproducible and Git whitespace checks pass. These checks do not prove native behavior. Both workflows executed successfully on GitHub.
 
-Swift and xcodebuild are absent from the host PATH. Swift tests, iOS builds, simulator tests, migration execution, rendered layout/contrast, VoiceOver, signing and 3D performance are **not run**. The M1 test sources must not be reported as passing tests. Baseline schema reopening coverage is authored; no historical migration exists yet. TestFlight is outside scope.
+Swift and xcodebuild are absent locally. Hosted Xcode 26.2 passed Debug/Release compilation, 17 core tests, 7 app tests and 3 UI tests on iPhone 17 Pro / iOS 26.2. Baseline disk-store reopen passed; no historical migration exists yet. Screenshots were inspected: contrast fixes and small/large simulator acceptance are pending in the next checkpoint. Physical-device VoiceOver, signing and 3D performance remain unrun. TestFlight is outside scope.
 
 Git author is configured for this repository only using the identity supplied by the user. See `AUDIT.md` for the second-pass findings and remaining risks.
 
@@ -37,6 +37,6 @@ Git author is configured for this repository only using the identity supplied by
 
 | Compilation | Native tests | Archive | Signing | IPA |
 | --- | --- | --- | --- | --- |
-| NOT RUN | NOT RUN | NOT CONFIGURED / not run | NOT CONFIGURED | NOT GENERATED |
+| PASS | PASS (27 tests) | NOT CONFIGURED / not run | NOT CONFIGURED | NOT GENERATED |
 
-Mac CI and standard export paths are authored, not executed. No signing credentials supplied. Automatic approval review could not execute the authenticated repository visibility check because the account hit a usage limit; this was a review-service failure, not a safety rejection. Upload/CI must wait for that review block to be resolved or explicit user guidance. Do not bypass it through another upload channel.
+First native checkpoint passed; archive/export paths remain unexecuted. No signing credentials supplied. Automatic approval review initially could not execute the repository visibility check due to a usage limit; after its stated retry time, the same approval-checked request succeeded. Repository privacy/write access were verified, then source was pushed and one full unsigned-validation checkpoint dispatched. No alternate upload channel bypass was used.

@@ -7,6 +7,7 @@ enum DesignTokens {
         static let textPrimary = SwiftUI.Color(red: 0.96, green: 0.97, blue: 1)
         static let textSecondary = SwiftUI.Color(red: 0.68, green: 0.72, blue: 0.81)
         static let energy = SwiftUI.Color(red: 0.72, green: 0.61, blue: 1)
+        static let onEnergy = canvas
         static let information = SwiftUI.Color(red: 0.43, green: 0.76, blue: 1)
         static let gold = SwiftUI.Color(red: 0.94, green: 0.77, blue: 0.40)
         static let success = SwiftUI.Color(red: 0.43, green: 0.86, blue: 0.66)

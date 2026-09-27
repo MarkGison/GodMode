@@ -8,6 +8,8 @@ Near-black canvas, graphite panels, white primary text, muted blue-gray secondar
 
 Tokens: `Color.canvas/surface/textPrimary/textSecondary/energy/information/gold/success/warning/error/disabled/border`; rarity aliases common/uncommon/rare/epic/legendary/mythic. `Space.inline/content/section/page` scale layout. `Type.hero/title/section/body/caption` uses Dynamic Type text styles, not fixed point sizes. `Radius.card/control`, `Line.border`, `Size.minimumTarget/icon/contentMaximum`, `Motion.feedback/transition`, `Shadow.card`, `Opacity.subtle`, `Haptics` symbolic patterns and `Material.panel` complete the foundation. Native tab-bar spacing is OS owned. Introduce additional named tokens only when consumed or needed by a planned primitive.
 
+`Color.onEnergy` aliases canvas for high-contrast text on violet filled actions. Native text-field prompts explicitly use textSecondary so they remain visible on the dark input surface. These corrections follow inspection of the first CI screenshots.
+
 ## Components and states
 
 Page: scrollable, centered maximum readable width, semantic page insets. Card: opaque surface with border and scalable title/body. Primary action: native button, violet tint, minimum 44-point target, explicit disabled/save-in-flight state. Errors: text + icon + recovery action; never color only. Empty state: truthful explanation and only implemented actions. Loading: labeled native progress indicator. Success: persists before navigation; native announcements where needed.

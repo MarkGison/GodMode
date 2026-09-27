@@ -88,6 +88,7 @@ class Runner:
         self.archive = self.output / "GodMode.xcarchive"
         self.environment = os.environ.copy()
         self.destination = None
+        self.boundary_destinations = []
 
     def run(self, name, command):
         print(f"Running {name}", flush=True)
@@ -115,7 +116,21 @@ class Runner:
         if not phone:
             print(f"Runner has no available iPhone for {self.config['simulatorRuntime']}.")
             raise RuntimeError("Pinned iOS simulator runtime has no available iPhone")
-        self.destination = f"platform=iOS Simulator,id={phone['udid']}"
+        self.destination = f"platform=iOS Simulator,id={phone['udid']},arch={platform.machine()}"
+        if self.suite == "full":
+            device_types = json.loads(subprocess.check_output(["xcrun", "simctl", "list", "devicetypes", "-j"], env=self.environment))["devicetypes"]
+            for name in ["iPhone SE (3rd generation)", "iPhone 17 Pro Max"]:
+                existing = next((d for d in candidates if d.get("isAvailable") and d["name"] == name), None)
+                if existing:
+                    identifier = existing["udid"]
+                else:
+                    device_type = next((d for d in device_types if d["name"] == name), None)
+                    if not device_type:
+                        raise RuntimeError("Required boundary simulator device type is unavailable")
+                    identifier = subprocess.check_output(["xcrun", "simctl", "create", "GodMode " + name,
+                        device_type["identifier"], self.config["simulatorRuntime"]], env=self.environment, text=True).strip()
+                destination = f"platform=iOS Simulator,id={identifier},arch={platform.machine()}"
+                self.boundary_destinations.append((name, destination))
         (self.output / "environment.json").write_text(json.dumps({
             "xcode": version, "runtime": self.config["simulatorRuntime"], "simulator": phone["name"],
             "runnerImage": os.environ.get("ImageVersion", "unknown")
@@ -133,22 +148,32 @@ class Runner:
     def tests(self):
         self.run("core-tests", ["swift", "test", "--package-path", "Packages/GodModeCore", "--parallel",
                                 "--enable-code-coverage", "-Xswiftc", "-warnings-as-errors"])
-        results = str(self.output / "GodMode-tests.xcresult")
-        command = self.xcode() + ["-enableCodeCoverage", "YES", "-resultBundlePath", results, "test-without-building"]
-        if self.suite == "unit":
+        self.apple_tests("apple-tests", self.destination, boundary=False)
+        for index, (_, destination) in enumerate(self.boundary_destinations):
+            self.apple_tests(f"boundary-{index + 1}", destination, boundary=True)
+
+    def apple_tests(self, name, destination, boundary):
+        results = str(self.output / f"{name}.xcresult")
+        command = self.xcode()
+        command[command.index("-destination") + 1] = destination
+        command += ["-enableCodeCoverage", "YES", "-resultBundlePath", results, "test-without-building"]
+        if boundary:
+            command += ["-only-testing:GodModeUITests/FoundationFlowTests/testSetupValidationAndProgramNavigation",
+                        "-only-testing:GodModeUITests/FoundationFlowTests/testLargeTextSetup"]
+        elif self.suite == "unit":
             command.append("-only-testing:GodModeTests")
         try:
-            self.run("apple-tests", command)
+            self.run(name, command)
         finally:
-            for name, export in [
+            for kind, export in [
                 ("coverage", ["xcrun", "xccov", "view", "--report", "--json", results]),
                 ("attachments", ["xcrun", "xcresulttool", "export", "attachments", "--path", results,
-                                 "--output-path", str(self.output / "attachments")]),
+                                 "--output-path", str(self.output / (name + "-attachments"))]),
             ]:
                 try:
-                    self.run(name, export)
+                    self.run(name + "-" + kind, export)
                 except RuntimeError:
-                    print(f"Optional {name} export unavailable; raw xcresult is retained when produced.")
+                    print(f"Optional {kind} export unavailable; raw xcresult is retained when produced.")
 
     def archive_build(self):
         self.run("device-archive", self.xcode("Release", device=True) + ["-archivePath", str(self.archive), "archive"])
