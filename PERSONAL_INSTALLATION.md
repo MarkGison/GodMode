@@ -2,6 +2,8 @@
 
 Target: private personal use on the owner's iPhone, iOS 26 or later. Development happens on Windows; native builds happen in automated macOS CI. No App Store/TestFlight/public release or paid remote Mac is required. Keep the repository and downloadable artifacts private.
 
+Owner confirmed iPhone 16 running iOS 26 on 2026-09-28. This meets the deployment minimum; signing, installation and update retention still require device verification.
+
 ## Artifact meanings
 
 | Artifact | Meaning |

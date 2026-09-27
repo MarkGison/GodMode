@@ -53,7 +53,9 @@ final class FoundationFlowTests: XCTestCase {
     private func scrollContent(_ app: XCUIApplication, upward: Bool) {
         // WHY: XCTest's default swipe can start behind the keyboard even on a ScrollView.
         // Intersect the actual visible content with the keyboard and navigation frames.
-        let frame = app.scrollViews.firstMatch.frame.intersection(app.frame)
+        let content = app.scrollViews["page.content"]
+        XCTAssertTrue(content.exists)
+        let frame = content.frame.intersection(app.frame)
         let navigation = app.navigationBars.firstMatch
         let keyboard = app.keyboards.firstMatch
         let top = max(frame.minY, navigation.exists ? navigation.frame.maxY : frame.minY)

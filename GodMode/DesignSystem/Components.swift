@@ -11,6 +11,7 @@ struct Page<Content: View>: View {
                 .frame(maxWidth: .infinity)
         }
         .scrollDismissesKeyboard(.interactively)
+        .accessibilityIdentifier("page.content")
         .background(DesignTokens.Color.canvas)
         .foregroundStyle(DesignTokens.Color.textPrimary)
     }
