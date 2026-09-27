@@ -1,0 +1,35 @@
+name: Native iOS quality gate
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  foundation:
+    runs-on: macos-15
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select an installed Xcode 26 or later
+        shell: bash
+        run: |
+          for app in /Applications/Xcode*.app; do
+            developer="$app/Contents/Developer"
+            major=$(DEVELOPER_DIR="$developer" xcodebuild -version | awk '/Xcode/ {split($2, v, "."); print v[1]}')
+            if [[ "$major" -ge 26 ]]; then
+              echo "DEVELOPER_DIR=$developer" >> "$GITHUB_ENV"
+              exit 0
+            fi
+          done
+          echo "No Xcode 26+ installed on this runner. Update the runner image." >&2
+          exit 1
+      - name: Build and test
+        run: bash tools/check-macos.sh
+      - name: Preserve Apple test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-test-results
+          path: artifacts/*.xcresult
+          if-no-files-found: ignore

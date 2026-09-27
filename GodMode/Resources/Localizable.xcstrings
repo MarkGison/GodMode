@@ -1,0 +1,22 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "GodMode" : {},
+    "System" : {},
+    "Quests" : {},
+    "Hunter" : {},
+    "Arsenal" : {},
+    "Progress" : {},
+    "Continue" : {},
+    "Retry" : {},
+    "Hunter name" : {},
+    "Explore program" : {},
+    "TRAIN. LEVEL UP. EVOLVE." : {},
+    "Awaken your potential." : {},
+    "What should we call you?" : {},
+    "Your name stays on this device. No account required." : {},
+    "Enter a name of 1–40 characters without line breaks." : {},
+    "Your name could not be saved. Your entry is still here. Try again." : {}
+  },
+  "version" : "1.0"
+}

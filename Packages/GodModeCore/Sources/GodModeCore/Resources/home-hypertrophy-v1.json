@@ -1,0 +1,915 @@
+{
+  "schemaVersion": 1,
+  "id": "home-hypertrophy",
+  "name": "Four-Day Home Hypertrophy",
+  "revision": 1,
+  "reviewNotice": "Day 1 follows the supplied program. Day 2–4 targets are editable development assumptions awaiting program review. Confirm a suitable load for every exercise; the available 10 kg dumbbells may not suit every movement.",
+  "exercises": [
+    {
+      "id": "bench-press",
+      "name": "Dumbbell Bench Press",
+      "equipment": [
+        "dumbbells",
+        "bench"
+      ],
+      "safetyNote": "Secure the bench and use a controllable load. Stop if the movement causes pain."
+    },
+    {
+      "id": "incline-press",
+      "name": "Incline Dumbbell Press",
+      "equipment": [
+        "dumbbells",
+        "bench"
+      ],
+      "safetyNote": "Lock the bench incline before use and keep the movement controlled."
+    },
+    {
+      "id": "shoulder-press",
+      "name": "Dumbbell Shoulder Press",
+      "equipment": [
+        "dumbbells",
+        "bench"
+      ],
+      "safetyNote": "Choose a load you can control without leaning back excessively."
+    },
+    {
+      "id": "lateral-raise",
+      "name": "Dumbbell Lateral Raise",
+      "equipment": [
+        "dumbbells"
+      ],
+      "safetyNote": "Use lighter equipment or a regression if 10 kg cannot be controlled."
+    },
+    {
+      "id": "triceps-extension",
+      "name": "Overhead Dumbbell Triceps Extension",
+      "equipment": [
+        "dumbbell"
+      ],
+      "safetyNote": "Use a comfortable range and a secure grip; choose a lighter load when needed."
+    },
+    {
+      "id": "close-push-up",
+      "name": "Close-Grip Push-Up",
+      "equipment": [
+        "floor"
+      ],
+      "safetyNote": "End the set when safe technique cannot be maintained; an incline variation is available."
+    },
+    {
+      "id": "goblet-squat",
+      "name": "Goblet Squat",
+      "equipment": [
+        "dumbbell"
+      ],
+      "safetyNote": "Use a comfortable range and stable footing."
+    },
+    {
+      "id": "split-squat",
+      "name": "Bulgarian Split Squat",
+      "equipment": [
+        "dumbbells",
+        "bench"
+      ],
+      "safetyNote": "Ensure the bench is stable. Use a floor split squat if balance or setup is unsuitable."
+    },
+    {
+      "id": "rdl",
+      "name": "Dumbbell Romanian Deadlift",
+      "equipment": [
+        "dumbbells"
+      ],
+      "safetyNote": "Keep the load controlled and use a comfortable hip-hinge range."
+    },
+    {
+      "id": "reverse-lunge",
+      "name": "Reverse Lunge",
+      "equipment": [
+        "dumbbells"
+      ],
+      "safetyNote": "Clear the floor and use support or a bodyweight variation when needed."
+    },
+    {
+      "id": "calf-raise",
+      "name": "Calf Raise",
+      "equipment": [
+        "dumbbells"
+      ],
+      "safetyNote": "Use the floor and stable support; do not balance on unsecured objects."
+    },
+    {
+      "id": "dead-bug",
+      "name": "Dead Bug",
+      "equipment": [
+        "floor"
+      ],
+      "safetyNote": "Keep the movement controlled and use a comfortable range."
+    },
+    {
+      "id": "side-plank",
+      "name": "Side Plank",
+      "equipment": [
+        "floor"
+      ],
+      "safetyNote": "Use a bent-knee variation if needed and stop when form deteriorates."
+    },
+    {
+      "id": "one-arm-row",
+      "name": "One-Arm Dumbbell Row",
+      "equipment": [
+        "dumbbell",
+        "bench"
+      ],
+      "safetyNote": "Support yourself on a stable bench and avoid twisting to lift the load."
+    },
+    {
+      "id": "renegade-row",
+      "name": "Renegade Row",
+      "equipment": [
+        "dumbbells",
+        "floor"
+      ],
+      "safetyNote": "Do not support body weight on dumbbells that can roll. Substitute a supported row when the setup is unstable."
+    },
+    {
+      "id": "rear-delt-fly",
+      "name": "Rear-Delt Fly",
+      "equipment": [
+        "dumbbells"
+      ],
+      "safetyNote": "Use a lighter load or regression when needed; avoid swinging."
+    },
+    {
+      "id": "curl",
+      "name": "Dumbbell Curl",
+      "equipment": [
+        "dumbbells"
+      ],
+      "safetyNote": "Use a controlled range without swinging the torso."
+    },
+    {
+      "id": "hammer-curl",
+      "name": "Hammer Curl",
+      "equipment": [
+        "dumbbells"
+      ],
+      "safetyNote": "Choose a load that permits controlled reps without wrist discomfort."
+    },
+    {
+      "id": "supported-row",
+      "name": "Chest-Supported Dumbbell Row",
+      "equipment": [
+        "dumbbells",
+        "bench"
+      ],
+      "safetyNote": "Lock the incline and ensure bench stability. This replaces improvised door or towel anchors."
+    },
+    {
+      "id": "thruster",
+      "name": "Dumbbell Thruster",
+      "equipment": [
+        "dumbbells"
+      ],
+      "safetyNote": "Use a controllable load and clear overhead space; separate squat and press if needed."
+    },
+    {
+      "id": "incline-fly",
+      "name": "Incline Dumbbell Fly",
+      "equipment": [
+        "dumbbells",
+        "bench"
+      ],
+      "safetyNote": "Use a comfortable shoulder range and lighter load if needed; substitute a press if the movement is uncomfortable."
+    },
+    {
+      "id": "rdl-row",
+      "name": "Romanian Deadlift to Row",
+      "equipment": [
+        "dumbbells"
+      ],
+      "safetyNote": "Each rep combines a controlled hinge and row. Use separate movements if technique deteriorates."
+    },
+    {
+      "id": "front-raise",
+      "name": "Dumbbell Front Raise",
+      "equipment": [
+        "dumbbells"
+      ],
+      "safetyNote": "Use lighter equipment or a regression if 10 kg cannot be controlled."
+    },
+    {
+      "id": "curl-press",
+      "name": "Curl-to-Press Complex",
+      "equipment": [
+        "dumbbells"
+      ],
+      "safetyNote": "Choose the load for the weaker movement and avoid momentum."
+    },
+    {
+      "id": "incline-push-up",
+      "name": "Incline Push-Up",
+      "equipment": [
+        "bench"
+      ],
+      "safetyNote": "Use a locked, stable bench that cannot slide."
+    },
+    {
+      "id": "march",
+      "name": "Controlled March",
+      "equipment": [
+        "floor"
+      ],
+      "safetyNote": "Use stable footing, comfortable pace and clear floor space."
+    }
+  ],
+  "days": [
+    {
+      "id": "push",
+      "name": "Push",
+      "focus": "Chest, shoulders, triceps",
+      "dungeon": "Crimson Forge",
+      "blocks": [
+        {
+          "id": "push-bench",
+          "kind": "straight",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "push-bench-1",
+              "exerciseID": "bench-press",
+              "sets": 4,
+              "target": "reps",
+              "minimumReps": 8,
+              "maximumReps": 12,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 3,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 60,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "push-incline",
+          "kind": "straight",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "push-incline-1",
+              "exerciseID": "incline-press",
+              "sets": 4,
+              "target": "reps",
+              "minimumReps": 8,
+              "maximumReps": 12,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 3,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 60,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "push-shoulder",
+          "kind": "straight",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "push-shoulder-1",
+              "exerciseID": "shoulder-press",
+              "sets": 4,
+              "target": "reps",
+              "minimumReps": 8,
+              "maximumReps": 12,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 2,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 60,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "push-lateral",
+          "kind": "straight",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "push-lateral-1",
+              "exerciseID": "lateral-raise",
+              "sets": 4,
+              "target": "reps",
+              "minimumReps": 12,
+              "maximumReps": 15,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 2,
+                "pause": 1,
+                "concentric": 2
+              },
+              "restSeconds": 45,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "push-triceps",
+          "kind": "straight",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "push-triceps-1",
+              "exerciseID": "triceps-extension",
+              "sets": 4,
+              "target": "reps",
+              "minimumReps": 10,
+              "maximumReps": 15,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 3,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 45,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "push-finisher",
+          "kind": "straight",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "push-finisher-1",
+              "exerciseID": "close-push-up",
+              "sets": 3,
+              "target": "amrap",
+              "minimumReps": null,
+              "maximumReps": null,
+              "durationSeconds": null,
+              "tempo": null,
+              "restSeconds": 45,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lower",
+      "name": "Lower + Core",
+      "focus": "Quads, glutes, hamstrings, calves, core",
+      "dungeon": "Titan Arena",
+      "blocks": [
+        {
+          "id": "lower-squat",
+          "kind": "straight",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "lower-squat-1",
+              "exerciseID": "goblet-squat",
+              "sets": 3,
+              "target": "reps",
+              "minimumReps": 10,
+              "maximumReps": 15,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 3,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 90,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "lower-split",
+          "kind": "unilateral",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "lower-split-1",
+              "exerciseID": "split-squat",
+              "sets": 3,
+              "target": "reps",
+              "minimumReps": 8,
+              "maximumReps": 12,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 3,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 90,
+              "sideTracking": "eachSide",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "lower-rdl",
+          "kind": "straight",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "lower-rdl-1",
+              "exerciseID": "rdl",
+              "sets": 3,
+              "target": "reps",
+              "minimumReps": 10,
+              "maximumReps": 15,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 3,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 90,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "lower-lunge",
+          "kind": "unilateral",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "lower-lunge-1",
+              "exerciseID": "reverse-lunge",
+              "sets": 3,
+              "target": "reps",
+              "minimumReps": 8,
+              "maximumReps": 12,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 2,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 60,
+              "sideTracking": "eachSide",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "lower-calf",
+          "kind": "straight",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "lower-calf-1",
+              "exerciseID": "calf-raise",
+              "sets": 3,
+              "target": "reps",
+              "minimumReps": 12,
+              "maximumReps": 20,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 2,
+                "pause": 1,
+                "concentric": 2
+              },
+              "restSeconds": 45,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "lower-core",
+          "kind": "circuit",
+          "rounds": 3,
+          "roundRestSeconds": 60,
+          "prescriptions": [
+            {
+              "id": "lower-core-1",
+              "exerciseID": "dead-bug",
+              "sets": 1,
+              "target": "reps",
+              "minimumReps": 8,
+              "maximumReps": 12,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 2,
+                "pause": 1,
+                "concentric": 2
+              },
+              "restSeconds": 15,
+              "sideTracking": "eachSide",
+              "suggestedLoadKgPerImplement": null
+            },
+            {
+              "id": "lower-core-2",
+              "exerciseID": "side-plank",
+              "sets": 1,
+              "target": "timed",
+              "minimumReps": null,
+              "maximumReps": null,
+              "durationSeconds": 20,
+              "tempo": null,
+              "restSeconds": 0,
+              "sideTracking": "eachSide",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pull",
+      "name": "Pull",
+      "focus": "Back, rear delts, biceps",
+      "dungeon": "Abyss Citadel",
+      "blocks": [
+        {
+          "id": "pull-row",
+          "kind": "unilateral",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "pull-row-1",
+              "exerciseID": "one-arm-row",
+              "sets": 3,
+              "target": "reps",
+              "minimumReps": 8,
+              "maximumReps": 12,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 3,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 60,
+              "sideTracking": "eachSide",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "pull-renegade",
+          "kind": "unilateral",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "pull-renegade-1",
+              "exerciseID": "renegade-row",
+              "sets": 3,
+              "target": "reps",
+              "minimumReps": 6,
+              "maximumReps": 10,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 2,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 90,
+              "sideTracking": "eachSide",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "pull-fly",
+          "kind": "straight",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "pull-fly-1",
+              "exerciseID": "rear-delt-fly",
+              "sets": 3,
+              "target": "reps",
+              "minimumReps": 12,
+              "maximumReps": 15,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 2,
+                "pause": 1,
+                "concentric": 2
+              },
+              "restSeconds": 60,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "pull-curl",
+          "kind": "straight",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "pull-curl-1",
+              "exerciseID": "curl",
+              "sets": 3,
+              "target": "reps",
+              "minimumReps": 8,
+              "maximumReps": 12,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 3,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 60,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "pull-hammer",
+          "kind": "straight",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "pull-hammer-1",
+              "exerciseID": "hammer-curl",
+              "sets": 3,
+              "target": "reps",
+              "minimumReps": 10,
+              "maximumReps": 15,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 2,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 60,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "pull-supported",
+          "kind": "straight",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "pull-supported-1",
+              "exerciseID": "supported-row",
+              "sets": 3,
+              "target": "reps",
+              "minimumReps": 10,
+              "maximumReps": 15,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 3,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 60,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "full-body",
+      "name": "Full Body Hypertrophy",
+      "focus": "Full-body control and strength",
+      "dungeon": "Ascension Tower",
+      "blocks": [
+        {
+          "id": "full-thruster",
+          "kind": "straight",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "full-thruster-1",
+              "exerciseID": "thruster",
+              "sets": 3,
+              "target": "reps",
+              "minimumReps": 8,
+              "maximumReps": 12,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 2,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 90,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "full-fly",
+          "kind": "straight",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "full-fly-1",
+              "exerciseID": "incline-fly",
+              "sets": 3,
+              "target": "reps",
+              "minimumReps": 10,
+              "maximumReps": 15,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 3,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 60,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "full-rdl-row",
+          "kind": "complex",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "full-rdl-row-1",
+              "exerciseID": "rdl-row",
+              "sets": 3,
+              "target": "reps",
+              "minimumReps": 8,
+              "maximumReps": 12,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 2,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 90,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "full-raises",
+          "kind": "superset",
+          "rounds": 3,
+          "roundRestSeconds": 60,
+          "prescriptions": [
+            {
+              "id": "full-raises-1",
+              "exerciseID": "lateral-raise",
+              "sets": 1,
+              "target": "reps",
+              "minimumReps": 10,
+              "maximumReps": 15,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 2,
+                "pause": 1,
+                "concentric": 2
+              },
+              "restSeconds": 0,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            },
+            {
+              "id": "full-raises-2",
+              "exerciseID": "front-raise",
+              "sets": 1,
+              "target": "reps",
+              "minimumReps": 10,
+              "maximumReps": 15,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 2,
+                "pause": 1,
+                "concentric": 2
+              },
+              "restSeconds": 0,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "full-curl-press",
+          "kind": "complex",
+          "rounds": 1,
+          "roundRestSeconds": 0,
+          "prescriptions": [
+            {
+              "id": "full-curl-press-1",
+              "exerciseID": "curl-press",
+              "sets": 3,
+              "target": "reps",
+              "minimumReps": 8,
+              "maximumReps": 12,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 2,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 90,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        },
+        {
+          "id": "full-finisher",
+          "kind": "circuit",
+          "rounds": 3,
+          "roundRestSeconds": 90,
+          "prescriptions": [
+            {
+              "id": "full-finisher-1",
+              "exerciseID": "goblet-squat",
+              "sets": 1,
+              "target": "reps",
+              "minimumReps": 8,
+              "maximumReps": 12,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 2,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 15,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            },
+            {
+              "id": "full-finisher-2",
+              "exerciseID": "incline-push-up",
+              "sets": 1,
+              "target": "reps",
+              "minimumReps": 8,
+              "maximumReps": 12,
+              "durationSeconds": null,
+              "tempo": {
+                "eccentric": 2,
+                "pause": 1,
+                "concentric": 1
+              },
+              "restSeconds": 15,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            },
+            {
+              "id": "full-finisher-3",
+              "exerciseID": "march",
+              "sets": 1,
+              "target": "timed",
+              "minimumReps": null,
+              "maximumReps": null,
+              "durationSeconds": 30,
+              "tempo": null,
+              "restSeconds": 0,
+              "sideTracking": "bilateral",
+              "suggestedLoadKgPerImplement": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
