@@ -41,3 +41,15 @@ Boundary-test investigation: runs 36353009206, 36353552448 and 36353997890 compi
 Final checkpoint 36354396835 at source 418e09e passed: 17 core + 7 app + 7 UI executions, Debug/Release compilation and device archive. Windows package verification confirmed version 0.1.0 (1), stable bundle ID, iPhoneOS platform and minimum OS 26.0. Inspected final SE/Pro Max default, maximum-text, program and settings screenshots. No clipped primary action or unreadable prompt remains in those inspected states. Unsigned IPA is generated; standard signed export and physical-device install remain unverified.
 
 Remaining: implement M2 and later milestones, test complete backup/diagnostics at their gates, verify personal installer compatibility and compatible updates on the owner's iPhone. The temporary automatic approval-review usage limit cleared; normal authenticated upload succeeded without an alternate channel.
+
+## M2 candidate source audit — 2026-09-28
+
+- Pure Foundation command/state reducer preserves the original value on error; no persistence/UI side effects before commit.
+- Validated immutable program snapshot and unique step keys preserve group/side/round order. Explicit beginSet closes actual rest before set work starts.
+- Session ID + revision guard stale/foreign commands; retained exact command receipts make retries effect-free after completion/undo. Conflicting ID reuse is rejected.
+- Partial drafts survive rejected input and pause/abort; full completion rejects skipped work. Undo retains reversed records and excludes intervening rest from active-set duration.
+- Canonical explicit load convention, bounded finite inputs, unknown pain/RIR retained; estimates are labeled and cannot generate work.
+- Absolute deadline, pause/extension and wall-versus-monotonic discontinuity checks avoid tick-dependent timing. Clock reconciliation conservatively freezes the unknown interval.
+- Capacity errors preserve state and receipts; one terminal command remains allowed at the ordinary journal limit. M3 must debounce draft writes and provide actionable errors.
+- No synthesized session decoder or changed V1 SwiftData schema. Validated DTO restoration, atomic persistence/receipt commit, one active session, crash recovery and post-commit event delivery remain M3 responsibilities; rewards remain M5.
+- Tests and source reviewed; 374 structural checks and 14 Python tests passed. Swift compilation/native tests remain pending until the M2 checkpoint succeeds. Existing M1 render evidence applies because no UI layout changed.

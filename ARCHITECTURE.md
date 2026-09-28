@@ -38,6 +38,20 @@ M2/M3: serialize active-session commands; idempotent command identifiers; persis
 
 ## Planned modules
 
+### Workout command boundary (M2)
+
+The established local repository remains the persistence boundary. M2 uses a pure **command/state-machine pattern**: `apply(completeSet, snapshot, clock) → proposed snapshot + events`. One local owner writes a small active session; relationships between prescribed steps, results, draft and rest must change together. M3 serializes commands and persists the proposal before UI acknowledgement. No remote authentication/API is introduced.
+
+| Domain option | Fit and tradeoff |
+| --- | --- |
+| View-model methods mutating fields directly | Simpler for a disposable set counter; UI lifecycle and save errors can leave fields inconsistent, so insufficient for restoration/retry guarantees. |
+| Pure command/state reducer with repository commit | Chosen: deterministic tests, immutable prescription snapshot, explicit command IDs/revisions, one coherent proposed update. Requires a validated M3 adapter and receipt retention. |
+| Full event-sourced replay | Can rebuild all state from history, but replay/migration and log growth add complexity without a current multi-device or audit-reconstruction requirement. Revisit only if that requirement becomes real. |
+
+**Why this approach:** the reducer makes illegal transitions and duplicate writes testable without Apple UI/storage. Revisions prevent stale UI edits and command receipts prevent retry duplication. The simpler direct-mutator alternative would suffice only for a temporary, nonpersistent counter. No persistence success, cross-session exclusivity or reward delivery is claimed by the reducer; those remain repository/ledger responsibilities. Size limits bound local work and journal growth; session loading will require validated DTOs, not blind Codable hydration.
+
+**Concepts used here:** A state machine allows only valid changes between workout states. Optimistic concurrency rejects commands prepared from an old revision. Idempotency means an exact retry produces no second effect. A transaction will make the M3 storage update succeed or fail as one unit.
+
 Workout/Schedule/Progression/Analytics are fitness domain services. RPGProgression/Quest/Reward/Achievement/Character/Inventory consume fitness facts. AssetManager and PerformanceManager own scene resources/adaptation. SystemCapabilities separates build inclusion, OS/device support, entitlement configuration and user authorization. HealthKit, LiveActivity, Notification, Haptic and AppIntent adapters are optional. CloudSyncService is a future boundary with no V1 implementation. App extensions receive minimal read models through a protected App Group only when both implemented and available.
 
 ## Personal Edition build and data paths

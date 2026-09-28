@@ -96,6 +96,9 @@ public struct Tempo: Codable, Sendable, Equatable {
     public let eccentric: Int
     public let pause: Int
     public let concentric: Int
+    public init(eccentric: Int, pause: Int, concentric: Int) {
+        self.eccentric = eccentric; self.pause = pause; self.concentric = concentric
+    }
     public var notation: String { "\(eccentric)-\(pause)-\(concentric)" }
 }
 

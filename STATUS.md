@@ -4,7 +4,8 @@ Updated 2026-09-28. Authoring host: Windows; Swift and Xcode unavailable.
 
 - Milestone 0: complete; original foundation commit `e10f441`, now revised by `PERSONAL_EDITION_OVERRIDE.md`. Master brief preserved as historical input.
 - Milestone 1: **source acceptance complete**. Full native CI, baseline store reopen, default/largest-text UI flows and small/large screenshot review passed. Device installation and hands-on accessibility remain separate V1 gates.
-- Milestones 2–19 (including new M3A backup gate): planned, not implemented. No working workout tracker, 3D character, cloud/HealthKit integration or installable IPA is claimed.
+- Milestone 2: domain implementation and regression tests authored; full native acceptance pending. App workout logging remains disabled until M3 durability tests pass.
+- Milestones 3–19 (including new M3A backup gate): planned, not implemented. No durable workout tracker, 3D character, cloud/HealthKit integration or signed IPA is claimed.
 
 ## Decisions recorded
 
@@ -12,7 +13,9 @@ Local owner, no server/account, local repository pattern, bundled validated cata
 
 ## Next gate
 
-**M2: workout engine**, following WORKOUT_ENGINE.md: validated state transitions, command retry safety, groups/unilateral/AMRAP/tempo/RIR and absolute-time rest. M3 adds durable workout persistence/restoration before the UI claims safe workout logging; M3A adds backup/import. Signing does not block source development. Owner confirmed iPhone 16 / iOS 26; physical-device performance/VoiceOver/update checks remain required for V1 readiness.
+**M2 native acceptance:** run full/none checkpoint for the command/state-machine engine. Source covers validated step planning, start/begin/draft/complete/skip/undo/substitute, pause/resume, partial/finish/abort, revision and retry protection, explicit load/RIR/RPE validation, absolute rest, clock reconciliation and tempo cues. Domain tests include every bundled day and failure/ordering/timing boundaries. No SwiftData schema or app UI changes. Local checks: 374/374 structure and 14 Python tests passed; native execution pending.
+
+After acceptance, **M3** adds durable workout persistence/restoration, validated storage DTOs, V1 migration and one-active-session enforcement before the UI claims safe workout logging; M3A adds backup/import. Signing does not block source development. Owner confirmed iPhone 16 / iOS 26; physical-device performance/VoiceOver/update checks remain required for V1 readiness.
 
 Accepted full/unsigned checkpoint: [36354396835](https://github.com/MarkGison/GodMode/actions/runs/36354396835), source `418e09ec432678b84114609494cd4e9aa8ec194d`. Earlier failed UI runs and the keyboard-scroll selector correction are recorded in AUDIT.md. No failed run is used as acceptance evidence.
 
@@ -35,7 +38,7 @@ Hosted Xcode 26.2 / iOS 26.2 passed Debug/Release compilation, **17 core tests, 
 
 Git author is configured for this repository only using the identity supplied by the user. See `AUDIT.md` for the second-pass findings and remaining risks.
 
-## Independent current build state
+## Last accepted build state (M1; M2 pending)
 
 | Compilation | Native tests | Archive | Signing | IPA |
 | --- | --- | --- | --- | --- |
