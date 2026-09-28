@@ -3,7 +3,7 @@
 Updated 2026-09-28. Authoring host: Windows; Swift and Xcode unavailable.
 
 - Milestone 0: complete; original foundation commit `e10f441`, now revised by `PERSONAL_EDITION_OVERRIDE.md`. Master brief preserved as historical input.
-- Milestone 1: foundation source authored and reviewed; Apple build/test/render acceptance is pending. Do not mark complete or advance to M2 until the full macOS CI gate succeeds and available visual artifacts are reviewed.
+- Milestone 1: **source acceptance complete**. Full native CI, baseline store reopen, default/largest-text UI flows and small/large screenshot review passed. Device installation and hands-on accessibility remain separate V1 gates.
 - Milestones 2–19 (including new M3A backup gate): planned, not implemented. No working workout tracker, 3D character, cloud/HealthKit integration or installable IPA is claimed.
 
 ## Decisions recorded
@@ -12,7 +12,9 @@ Local owner, no server/account, local repository pattern, bundled validated cata
 
 ## Next gate
 
-The repository has been pushed. Full/none checkpoint [36323283081](https://github.com/MarkGison/GodMode/actions/runs/36323283081) passed for source commit e5eeeca. The next checkpoint will verify contrast fixes, boundary-device UI flows and unsigned packaging. CI pins Xcode 26.2 + iOS 26.2 simulator. Inspect logs, tests and screenshot artifacts from Windows, fix failures, record actual evidence and finish M1 before M2. Signing remains independent; unavailable personal signing does not block source development. Physical-device performance/VoiceOver/update checks remain required for V1 readiness.
+**M2: workout engine**, following WORKOUT_ENGINE.md: validated state transitions, command retry safety, groups/unilateral/AMRAP/tempo/RIR and absolute-time rest. M3 adds durable workout persistence/restoration before the UI claims safe workout logging; M3A adds backup/import. Signing does not block source development. Owner confirmed iPhone 16 / iOS 26; physical-device performance/VoiceOver/update checks remain required for V1 readiness.
+
+Accepted full/unsigned checkpoint: [36354396835](https://github.com/MarkGison/GodMode/actions/runs/36354396835), source `418e09ec432678b84114609494cd4e9aa8ec194d`. Earlier failed UI runs and the keyboard-scroll selector correction are recorded in AUDIT.md. No failed run is used as acceptance evidence.
 
 ## Implemented foundation source
 
@@ -29,7 +31,7 @@ The repository has been pushed. Full/none checkpoint [36323283081](https://githu
 
 Personal Edition: **371/371 structural checks passed**, **14 Python regression tests passed**, and all build tooling passed Python syntax compilation. Tests cover stage reporting, package structure and provisioning validation. Generated project remains reproducible and Git whitespace checks pass. These checks do not prove native behavior. Both workflows executed successfully on GitHub.
 
-Swift and xcodebuild are absent locally. Hosted Xcode 26.2 passed Debug/Release compilation, 17 core tests, 7 app tests and 3 UI tests on iPhone 17 Pro / iOS 26.2. Baseline disk-store reopen passed; no historical migration exists yet. Screenshots were inspected: contrast fixes and small/large simulator acceptance are pending in the next checkpoint. Physical-device VoiceOver, signing and 3D performance remain unrun. TestFlight is outside scope.
+Hosted Xcode 26.2 / iOS 26.2 passed Debug/Release compilation, **17 core tests, 7 app tests and 7 UI executions**: 3 on iPhone 17 Pro and 2 each on SE (3rd generation) and 17 Pro Max. Baseline disk-store reopen passed; no historical migration exists yet. Default and largest-accessibility-text screenshots were inspected, including the reachable Continue button above the keyboard on both boundary devices, readable prompt/button contrast, program details and capability settings. Native scrolling/wrapping matched the written design brief. Physical-device VoiceOver, signing and 3D performance remain unrun. TestFlight is outside scope.
 
 Git author is configured for this repository only using the identity supplied by the user. See `AUDIT.md` for the second-pass findings and remaining risks.
 
@@ -37,6 +39,8 @@ Git author is configured for this repository only using the identity supplied by
 
 | Compilation | Native tests | Archive | Signing | IPA |
 | --- | --- | --- | --- | --- |
-| PASS | PASS (27 tests) | NOT CONFIGURED / not run | NOT CONFIGURED | NOT GENERATED |
+| PASS | PASS (31 executions) | PASS | NOT CONFIGURED | GENERATED — unsigned |
 
-First native checkpoint passed; archive/export paths remain unexecuted. No signing credentials supplied. Automatic approval review initially could not execute the repository visibility check due to a usage limit; after its stated retry time, the same approval-checked request succeeded. Repository privacy/write access were verified, then source was pushed and one full unsigned-validation checkpoint dispatched. No alternate upload channel bypass was used.
+Device archive and unsigned package passed in the accepted run. The downloaded IPA was revalidated on Windows: bundle `com.markgison.godmode`, version 0.1.0 (1), minimum iOS 26.0, platform iPhoneOS. It is **not directly installable**; no signing credentials or owner-device installation evidence have been supplied.
+
+Local artifacts: `artifacts/ci-36354396835/20260927T221131-9662/` contains reports, logs, screenshots, xcresult, archive and `GodMode-unsigned-for-resigning.ipa`. IPA SHA-256: `344c3e5af4ffe374999e5198b894975a4ba986632025eae783c8bc5a61b949d8`. GitHub artifacts expire after 7 days; the local copy is retained and ignored by Git. No avoidable Swift compiler warnings were found; Apple tool notices are detailed in AUDIT.md.

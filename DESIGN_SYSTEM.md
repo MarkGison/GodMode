@@ -24,4 +24,4 @@ M1 hierarchy: GodMode title → tagline → profile → program link. Quests lis
 
 ## Verification
 
-Inspect CI screenshots from small/large supported iPhone simulators, default and largest accessibility type, then the owner's iPhone when personal signing is available. Compare against this written brief; no supplied visual reference exists. Preserve screenshots/test attachments as CI artifacts for Windows review. The first iPhone 17 Pro renders were inspected; the two contrast findings above are corrected in source and await boundary-device render acceptance.
+Inspect CI screenshots from small/large supported iPhone simulators, default and largest accessibility type, then the owner's iPhone when personal signing is available. Compare against this written brief; no supplied visual reference exists. Preserve screenshots/test attachments as CI artifacts for Windows review. Checkpoint 36354396835 passed boundary-device flows; final SE (3rd generation) and 17 Pro Max renders confirm readable prompts, high-contrast actions, natural wrapping and a reachable Continue above the keyboard at largest text size. Physical-device VoiceOver remains pending.

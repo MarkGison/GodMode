@@ -16,15 +16,15 @@ Scope: M0 specifications and M1 source. Initial method: source review, project-r
 
 ## Remaining gates and risks
 
-1. Native sources and generated project passed Xcode 26.2 Debug/Release compilation in checkpoint 36323283081. Boundary-device layout and contrast acceptance are pending the next checkpoint before M2.
+1. Native sources, generated project, boundary-device layout and contrast passed acceptance in checkpoint 36354396835. M2 may proceed.
 2. SwiftData reopen, save failure and presentation tests passed. No historical schema migration has been exercised; V2 must retain and test V1 fixtures.
 3. No real-device timing, thermal, energy, memory or render claims are supported. No RealityKit code/assets are included in M1.
 4. Day 2–4 seed prescriptions need program review before release. Catalog notes are not a full exercise coaching library yet.
 5. CloudKit is future scope outside V1. Optional HealthKit permissions/export and other system surfaces remain planned. Local transactions alone will not ensure future cross-device reward uniqueness.
-6. First simulator screenshots were inspected. Corrected low-contrast filled-button text and the name-field prompt using semantic tokens. Small/large layouts and updated contrast need the next render gate; physical VoiceOver remains unverified.
+6. Corrected low-contrast filled-button text and the name-field prompt using semantic tokens. Final small/large screenshots were inspected, including largest-text primary actions above the keyboard; physical VoiceOver remains unverified.
 7. Superseded by Personal Edition override: bundle identity is now frozen in Config/build.json. App icon, personal signing, capability checks and privacy re-audit remain pending; TestFlight and App Store are outside current scope.
 
-No milestone beyond M0 is certified complete. Source work is saved so automated macOS CI can reproduce and finish the next gate from the Windows workflow.
+M0 and M1 source acceptance are complete. Later milestones and physical-device V1 acceptance remain open.
 
 ## Personal Edition override audit
 
@@ -36,4 +36,8 @@ Security review: unsigned packages cannot be labeled installable; simulator payl
 
 First full native checkpoint 36323283081 passed: 17 core tests, 7 app persistence/presentation tests and 3 UI tests; default iPhone 17 Pro and accessibility-text screenshots inspected. No Swift source compiler warnings were found. Xcode emitted tool notices for AppIntents metadata without that framework and stripping signed XCTest libraries. Explicit simulator architecture now removes the avoidable ambiguous-destination notice.
 
-Remaining: accept boundary-device UI and unsigned archive/package checkpoint, implement and test complete backup/diagnostics at their gates, verify personal installer compatibility and compatible updates on the owner's iPhone. The temporary automatic approval-review usage limit cleared; normal authenticated upload succeeded without an alternate channel.
+Boundary-test investigation: runs 36353009206, 36353552448 and 36353997890 compiled successfully but failed the new maximum-text Continue visibility assertion. Screenshots and synthesized-event logs showed broad scroll-view queries selecting the keyboard suggestion strip (a 44-point-high area), rather than the page. The correction gives Page a stable `page.content` identifier and bounds test gestures above the keyboard. Interactive keyboard dismissal remains native. The test continues to require a hittable Continue button and successful profile completion; it is not skipped or relaxed. Owner confirmed iPhone 16 / iOS 26, matching the deployment minimum.
+
+Final checkpoint 36354396835 at source 418e09e passed: 17 core + 7 app + 7 UI executions, Debug/Release compilation and device archive. Windows package verification confirmed version 0.1.0 (1), stable bundle ID, iPhoneOS platform and minimum OS 26.0. Inspected final SE/Pro Max default, maximum-text, program and settings screenshots. No clipped primary action or unreadable prompt remains in those inspected states. Unsigned IPA is generated; standard signed export and physical-device install remain unverified.
+
+Remaining: implement M2 and later milestones, test complete backup/diagnostics at their gates, verify personal installer compatibility and compatible updates on the owner's iPhone. The temporary automatic approval-review usage limit cleared; normal authenticated upload succeeded without an alternate channel.
